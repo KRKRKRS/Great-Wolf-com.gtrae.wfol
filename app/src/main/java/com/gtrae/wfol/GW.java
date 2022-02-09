@@ -41,7 +41,6 @@ import okhttp3.Response;
 
 
 public class GW extends AppCompatActivity {
-
     public static Context MAcontext;
     public static String strDeep;
     public static final String GistLink = "https://gist.githubusercontent.com/KRKRKRS/3977bc193036e4ee8ed08cfa1acb3c8d/raw/Great%2520Wolf%2520%257C%2520com.gtrae.wfol/";
@@ -66,7 +65,6 @@ public class GW extends AppCompatActivity {
 
 
     ServiceConnection myServiceConnection = new ServiceConnection() {
-
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             MyService.LocalBinder binder = (MyService.LocalBinder) iBinder;
@@ -93,7 +91,7 @@ public class GW extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.progressBar);
 
-        if (!devModeOff()) {       // TODO delete !
+        if (devModeOff()) {
 
             Intent intent = new Intent(this, MyService.class);
             this.bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
@@ -106,13 +104,7 @@ public class GW extends AppCompatActivity {
             }, 1000);
 
             webView = findViewById(R.id.webView);
-//
-//            Retrofit retrofit = new Retrofit.Builder()
-//                    .baseUrl(GW.GistLink)
-//                    .build();
-//            InerGist gistApi = retrofit.create(InerGist.class);
-//            Call<ResponseBody> gistQuery = gistApi.getStringUrl();
-
+            setWebView(webView);
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().get().url(GW.GistLink).build();
             Call call = client.newCall(request);
@@ -161,59 +153,8 @@ public class GW extends AppCompatActivity {
         }
     }
 
-
-//
-//
-//            gistQuery.enqueue(new Callback<ResponseBody>() {
-//                @Override
-//                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-//                    if (response.isSuccessful() & response.body() != null) {
-//                        try {
-//                            String url = response.body().string();
-//                            String[] params = url.split("\\|");
-//                            offer = params[0];
-//                            keyDefault = params[1];
-//                            fb_Id = params[2];
-//
-//                            doFacebook(fb_Id, GW.this);
-//
-//                            sPrefs = getSharedPreferences("bXlXZWJWaWV3UHJlZnM=", Context.MODE_PRIVATE);
-//                            link = sPrefs.getString(URL_SHARED_PREF, null);
-//
-////                            if (link != null) {
-////                                webView.loadUrl(link);
-////                            } else {
-//                                // TODO handler
-//                                new Handler().postDelayed(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        GW.this.unbindService(myServiceConnection);
-//                                        startWebView(offer);
-//                                    }
-//                                },5000);
-////                            }
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    } else {
-//                        goToGame();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-//                    goToGame();
-//                }
-//            });
-//
-//        } else {
-//            goToGame();
-//        }
-//    }
-
-
     private void goToGame() {
-        startActivity(new Intent(this, Game.class));
+        startActivity(new Intent(this, MenuActivity.class));
         finish();
     }
 
