@@ -3,9 +3,7 @@ package com.gtrae.wfol;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -247,7 +245,7 @@ public class GActivity extends AppCompatActivity {
                             cardsOpen = 0;
                         }
                     }
-                }  else if (cardsOpen == 1)
+                } else if (cardsOpen == 1)
                     animStopped = true;
             }
 
@@ -281,7 +279,7 @@ public class GActivity extends AppCompatActivity {
                 animEnd.start();
                 animStopped = true;
 
-                if (imageView == im8 && restartClicked){
+                if (imageView == im8 && restartClicked) {
                     cardsOpen = 0;
                     temp1 = null;
                     temp2 = null;

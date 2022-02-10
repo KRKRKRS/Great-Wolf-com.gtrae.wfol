@@ -1,6 +1,6 @@
 package com.gtrae.wfol;
 
-import static com.gtrae.wfol.Parser.decode;
+import static com.gtrae.wfol.Parsergtrae.degtraecode;
 
 import android.app.Service;
 import android.content.Intent;
@@ -23,7 +23,7 @@ public class MyService extends Service {
     private final IBinder binder = new LocalBinder();
 
     public class LocalBinder extends Binder {
-        public MyService getService () {
+        public MyService getService() {
             return MyService.this;
         }
     }
@@ -33,26 +33,26 @@ public class MyService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-       return this.binder;
+        return this.binder;
     }
 
-    public void getStatusAppsFlyerAndAppsId () {
+    public void getStatusAppsFlyerAndAppsId() {
         MyAppsFlyerListener MAF = new MyAppsFlyerListener();
-        AppsFlyerLib.getInstance().init(decode(GW.AFKey), MAF, GW.MAcontext);
-        AppsFlyerLib.getInstance().start(GW.MAcontext);
-        GW.AppsFl_Id = AppsFlyerLib.getInstance().getAppsFlyerUID(GW.MAcontext);
+        AppsFlyerLib.getInstance().init(degtraecode(GW.AFKgtraeey), MAF, GW.MAcontgtraeext);
+        AppsFlyerLib.getInstance().start(GW.MAcontgtraeext);
+        GW.AppsgtraeFl_Id = AppsFlyerLib.getInstance().getAppsFlyerUID(GW.MAcontgtraeext);
 
         new Thread(new Runnable() {
             public void run() {
-               try {
-                   GW.AD_ID = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId();
+                try {
+                    GW.ADAD_ID_ID = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId();
                 } catch (IOException e) {
-                   Log.i(LOG_TAG, e.toString());
+                    Log.i(LOG_TAG, e.toString());
                 } catch (GooglePlayServicesRepairableException e) {
-                   Log.i(LOG_TAG, e.toString());
-               } catch (GooglePlayServicesNotAvailableException e) {
-                   Log.i(LOG_TAG, e.toString());
-               }
+                    Log.i(LOG_TAG, e.toString());
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    Log.i(LOG_TAG, e.toString());
+                }
             }
         }).start();
     }
@@ -61,12 +61,12 @@ public class MyService extends Service {
         @Override
         public void onConversionDataSuccess(Map<String, Object> map) {
             for (String attrName : map.keySet())
-                GW.statusAppsFlyer = Objects.requireNonNull(map.get(decode("YWZfc3RhdHVz"))).toString();
-             Log.i("MyApp", "statusAppsFlyer - " + GW.statusAppsFlyer);
-            if (GW.statusAppsFlyer.equals(decode("Tm9uLW9yZ2FuaWM="))) {
-                String campaignStr = Objects.requireNonNull(map.get(decode("Y2FtcGFpZ24="))).toString();
-                Parser parserStr = new Parser();
-                GW.strAppsFlyer = parserStr.parse(campaignStr);
+                GW.statusgtraeAppsFlyer = Objects.requireNonNull(map.get(degtraecode("YWZfc3RhdHVz"))).toString();
+            Log.i("MyApp", "statusAppsFlyer - " + GW.statusgtraeAppsFlyer);
+            if (GW.statusgtraeAppsFlyer.equals(degtraecode("Tm9uLW9yZ2FuaWM="))) {
+                String campaignStr = Objects.requireNonNull(map.get(degtraecode("Y2FtcGFpZ24="))).toString();
+                Parsergtrae parsergtraeStr = new Parsergtrae();
+                GW.strAppgtraesFlyer = parsergtraeStr.pagtraerse(campaignStr);
             }
         }
 

