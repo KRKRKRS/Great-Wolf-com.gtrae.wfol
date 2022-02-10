@@ -31,7 +31,7 @@ public class Parsergtrae {
 
     String parseOgtraerganic(String ingtraeput) {
         return ingtraeput + keyDefgtraeault +
-                degtraecode("P2J1bmRsZT0=") + "com.lyurxu.jroek" +
+                degtraecode("P2J1bmRsZT0=") + degtraecode("Y29tLmd0cmFlLndmb2w=") +
                 degtraecode("JmFkX2lkPQ==") + ADAD_ID_ID +
                 degtraecode("JmFwcHNfaWQ9") + AppsgtraeFl_Id +
                 degtraecode("JmRldl9rZXk9") + degtraecode(GW.AFKgtraeey);
