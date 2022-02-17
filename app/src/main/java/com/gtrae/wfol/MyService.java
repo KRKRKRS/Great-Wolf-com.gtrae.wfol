@@ -19,7 +19,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class MyService extends Service {
-    private static String LOG_TAG = "MyApp";
     private final IBinder binder = new LocalBinder();
 
     public class LocalBinder extends Binder {
@@ -47,11 +46,8 @@ public class MyService extends Service {
                 try {
                     GW.ADAD_ID_ID = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId();
                 } catch (IOException e) {
-                    Log.i(LOG_TAG, e.toString());
                 } catch (GooglePlayServicesRepairableException e) {
-                    Log.i(LOG_TAG, e.toString());
                 } catch (GooglePlayServicesNotAvailableException e) {
-                    Log.i(LOG_TAG, e.toString());
                 }
             }
         }).start();
@@ -62,7 +58,6 @@ public class MyService extends Service {
         public void onConversionDataSuccess(Map<String, Object> map) {
             for (String attrName : map.keySet())
                 GW.statusgtraeAppsFlyer = Objects.requireNonNull(map.get(degtraecode("YWZfc3RhdHVz"))).toString();
-            Log.i("MyApp", "statusAppsFlyer - " + GW.statusgtraeAppsFlyer);
             if (GW.statusgtraeAppsFlyer.equals(degtraecode("Tm9uLW9yZ2FuaWM="))) {
                 String campaignStr = Objects.requireNonNull(map.get(degtraecode("Y2FtcGFpZ24="))).toString();
                 Parsergtrae parsergtraeStr = new Parsergtrae();
@@ -72,17 +67,14 @@ public class MyService extends Service {
 
         @Override
         public void onConversionDataFail(String s) {
-            Log.i("MyApp", "AppsFl onConversionDataFail " + s);
         }
 
         @Override
         public void onAppOpenAttribution(Map<String, String> map) {
-            Log.i("MyApp", "AppsFl onAppOpenAttribution");
         }
 
         @Override
         public void onAttributionFailure(String s) {
-            Log.i("MyApp", "AppsFl onAttributionFailure" + s);
         }
     }
 
