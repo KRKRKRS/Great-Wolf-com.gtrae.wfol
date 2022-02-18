@@ -217,7 +217,7 @@ public class GW extends AppCompatActivity {
             webViegtraew.setVisibility(View.VISIBLE);
             progtraegressBar.setVisibility(ProgressBar.INVISIBLE);
 
-            if (url.contains(degtraecode("NDA0"))) {
+            if (url.contains(degtraecode("Z2FwcHM9NDA0"))) {
                 goTogtraeGame();
                 finish();
             }
